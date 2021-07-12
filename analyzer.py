@@ -86,9 +86,10 @@ def get_method_invocations(program: Program) -> dict:
         for klass in package.classes.values():
             method_invocations[klass.name] = {}
             for method in klass.methods.values():
-                if method.name in method_invocations.keys():
-                    method_invocations[klass.name][method.name].extend(method.method_invocations)
-                else:
-                    method_invocations[klass.name][method.name] = method.method_invocations
+                if method.name is not None:
+                    if method.name in method_invocations.keys():
+                        method_invocations[klass.name][method.name].extend(method.method_invocations)
+                    else:
+                        method_invocations[klass.name][method.name] = method.method_invocations
 
     return method_invocations
