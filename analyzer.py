@@ -35,12 +35,12 @@ def get_program(source_files: list, print_status=False) -> Program:
     return program
 
 
-def get_classes_count(program: Program) -> int:
-    result = 0
+def get_classes(program: Program) -> list:
+    classes = []
     for package in program.packages.values():
-        result += len(package.classes)
+        classes.extend(package.classes)
 
-    return result
+    return classes
 
 
 def get_class_attrs(program: Program) -> dict:
